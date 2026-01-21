@@ -1,0 +1,60 @@
+---
+layout: default
+---
+<div class="books-page">
+  {% assign sorted_books = site.books | sort: 'release_year' | reverse %}
+  {% for book in sorted_books %}
+  <section class="book-section">
+    <div class="book-header">
+      <h2 class="book-title">{{ book.title }}</h2>
+      {% if book.subtitle %}
+      <p class="book-subtitle">{{ book.subtitle }}</p>
+      {% endif %}
+
+      <div class="book-meta">
+        <p>{{ book.publisher }} — {{ book.release_date }}</p>
+      </div>
+
+      {% if book.press_links %}
+      <p class="book-press-links">{{ book.press_links }}</p>
+      {% endif %}
+
+      {% if book.order_link %}
+      <a href="{{ book.order_link }}" target="_blank" rel="noopener" class="book-order-btn">CLICK HERE TO ORDER</a>
+      {% endif %}
+    </div>
+
+    <div class="book-main">
+      {% if book.cover_image %}
+      <div class="book-cover">
+        <img src="{{ book.cover_image | relative_url }}" alt="{{ book.title }} cover">
+      </div>
+      {% endif %}
+
+      {% if book.press_quotes and book.press_quotes.size > 0 %}
+      <div class="book-quotes">
+        {% for quote in book.press_quotes %}
+        <blockquote class="press-quote">
+          <p>{% if quote.highlight %}"<strong>{{ quote.highlight }}</strong>{% else %}"{% endif %}{{ quote.quote }}" - <em>{{ quote.source }}</em></p>
+        </blockquote>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    {% if book.recognition %}
+    <p class="book-recognition">{{ book.recognition }}</p>
+    {% endif %}
+
+    {% if book.media_appearances and book.media_appearances.size > 0 %}
+    <div class="book-media">
+      {% for appearance in book.media_appearances %}
+      <span class="media-item">{{ appearance }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </section>
+  {% endfor %}
+
+  {{ content }}
+</div>

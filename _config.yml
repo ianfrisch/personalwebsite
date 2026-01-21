@@ -1,0 +1,51 @@
+# Ian Frisch - Journalist Portfolio
+# Using Sinai Jekyll Theme
+
+theme_version: 1.0.3
+
+# Site settings
+title:              Ian Frisch
+logo:               # Logo image URL
+description:        Journalist, Author, Television Producer
+baseurl:            ''
+url:                'https://ianfrisch.com'
+twitter:            https://twitter.com/ianfrisch
+instagram:          https://www.instagram.com/ian_frisch
+
+markdown:  kramdown
+permalink: pretty
+paginate:  12
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-paginate
+  - jekyll/tagging
+  - jekyll-seo-tag
+
+include:
+  - _pages
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - sinai-theme
+  - _journalism_backup
+  - _books_backup
+  - _copywriting_projects_backup
+  - _tv_projects_backup
+  - assets_images_backup
+  - "*.zip"
+
+# Tags
+tag_page_dir:         tag
+tag_page_layout:      tag_page
+tag_permalink_style:  pretty
+
+# Pages path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext

@@ -1,0 +1,169 @@
+backend:
+  name: github
+  repo: OWNER/REPO  # Replace with actual GitHub username/repo
+  branch: main
+  base_url: https://api.netlify.com  # Or use your own OAuth proxy
+
+# For local development, uncomment this:
+# local_backend: true
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+# Site URL for preview links
+site_url: https://OWNER.github.io  # Replace with actual URL
+
+collections:
+  # Books Collection
+  - name: "books"
+    label: "Books"
+    folder: "_books"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
+      - { label: "Publisher", name: "publisher", widget: "string", required: false }
+      - { label: "Release Date", name: "release_date", widget: "string", required: false }
+      - { label: "Release Year", name: "release_year", widget: "number", required: false }
+      - { label: "Recognition", name: "recognition", widget: "string", required: false }
+      - { label: "Order Link", name: "order_link", widget: "string", required: false }
+      - { label: "Short Description", name: "short_description", widget: "text", required: false }
+      - { label: "Full Description", name: "description", widget: "markdown", required: false }
+      - label: "Press Quotes"
+        name: "press_quotes"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Quote", name: "quote", widget: "text" }
+          - { label: "Source", name: "source", widget: "string" }
+      - label: "Media Appearances"
+        name: "media_appearances"
+        widget: "list"
+        required: false
+        field: { label: "Appearance", name: "appearance", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Journalism Collection
+  - name: "journalism"
+    label: "Journalism"
+    folder: "_journalism"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Publication", name: "publication", widget: "string" }
+      - { label: "Section", name: "section", widget: "string", required: false }
+      - { label: "Date Published", name: "date_published", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Word Count", name: "word_count", widget: "number", required: false }
+      - { label: "External URL", name: "external_url", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Image Credit", name: "image_credit", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Awards"
+        name: "awards"
+        widget: "list"
+        required: false
+        field: { label: "Award", name: "award", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Copywriting Projects Collection
+  - name: "copywriting_projects"
+    label: "Copywriting"
+    folder: "_copywriting_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Client", name: "client", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "External URL", name: "external_url", widget: "string", required: false }
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # TV Projects Collection
+  - name: "tv_projects"
+    label: "Film/TV"
+    folder: "_tv_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Network", name: "network", widget: "string", required: false }
+      - { label: "Production Company", name: "production_company", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "External URL", name: "external_url", widget: "string", required: false }
+      - label: "Awards"
+        name: "awards"
+        widget: "list"
+        required: false
+        field: { label: "Award", name: "award", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Pages Collection
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "about.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/about/" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Copywriting (Intro)"
+        name: "copywriting"
+        file: "copywriting.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/copywriting/" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Film/TV (Intro)"
+        name: "film-tv"
+        file: "film-tv.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/film-tv/" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Journalism (Intro)"
+        name: "journalism"
+        file: "journalism.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/journalism/" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # Site Settings
+  - name: "settings"
+    label: "Settings"
+    files:
+      - label: "Site Configuration"
+        name: "config"
+        file: "_config.yml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Author", name: "author", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Twitter Username", name: "twitter_username", widget: "string", required: false }
+          - { label: "Instagram Username", name: "instagram_username", widget: "string", required: false }

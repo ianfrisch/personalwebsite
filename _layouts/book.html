@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<article class="book-detail">
+  <div class="container">
+    <div class="book-hero">
+      {% if page.cover_image %}
+      <div class="book-cover">
+        <img src="{{ page.cover_image | relative_url }}" alt="{{ page.title }} cover">
+      </div>
+      {% endif %}
+      <div class="book-info">
+        <h1>{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <p class="book-subtitle">{{ page.subtitle }}</p>
+        {% endif %}
+        <div class="book-meta">
+          {% if page.publisher %}<p><strong>Publisher:</strong> {{ page.publisher }}</p>{% endif %}
+          {% if page.release_date %}<p><strong>Release:</strong> {{ page.release_date }}</p>{% endif %}
+          {% if page.recognition %}<p class="recognition">{{ page.recognition }}</p>{% endif %}
+        </div>
+        {% if page.order_link %}
+        <a href="{{ page.order_link }}" class="btn btn-primary" target="_blank" rel="noopener">Order Now</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if page.description %}
+    <div class="book-description">
+      {{ page.description | markdownify }}
+    </div>
+    {% endif %}
+
+    {{ content }}
+
+    {% if page.press_quotes and page.press_quotes.size > 0 %}
+    <section class="press-quotes">
+      <h2>Press</h2>
+      <div class="quotes-grid">
+        {% for quote in page.press_quotes %}
+        <blockquote class="press-quote">
+          <p>{{ quote.quote }}</p>
+          <cite>— {{ quote.source }}</cite>
+        </blockquote>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if page.media_appearances and page.media_appearances.size > 0 %}
+    <section class="media-appearances">
+      <h2>Media</h2>
+      <ul class="media-list">
+        {% for appearance in page.media_appearances %}
+        <li>{{ appearance }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </div>
+</article>

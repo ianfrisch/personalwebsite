@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<article class="article-detail">
+  <div class="container">
+    <header class="article-header">
+      <p class="article-publication">{{ page.publication }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.subtitle %}
+      <p class="article-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+      <div class="article-meta">
+        {% if page.date_published %}<span class="date">{{ page.date_published }}</span>{% endif %}
+        {% if page.word_count %}<span class="word-count">{{ page.word_count }} words</span>{% endif %}
+      </div>
+    </header>
+
+    {% if page.image %}
+    <div class="article-image">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      {% if page.image_credit %}<p class="image-credit">Photo: {{ page.image_credit }}</p>{% endif %}
+    </div>
+    {% endif %}
+
+    {% if page.description or content != "" %}
+    <div class="article-description">
+      {% if page.description %}
+      <p>{{ page.description }}</p>
+      {% endif %}
+      {{ content }}
+    </div>
+    {% endif %}
+
+    {% if page.awards and page.awards.size > 0 %}
+    <div class="article-awards">
+      {% for award in page.awards %}
+      <span class="award-badge">{{ award }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.external_url %}
+    <div class="article-cta">
+      <a href="{{ page.external_url }}" class="btn btn-primary" target="_blank" rel="noopener">Read Full Article</a>
+    </div>
+    {% endif %}
+
+    <nav class="article-nav">
+      <a href="{{ '/journalism/' | relative_url }}">&larr; Back to Journalism</a>
+    </nav>
+  </div>
+</article>
