@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: chrisrnewton/frisch  # Change to Ian's repo later
+  name: git-gateway
   branch: main
 
 media_folder: "images"
